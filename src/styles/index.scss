@@ -20,5 +20,9 @@
   .tb-row-item {
     flex: 1;
     height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
   }
 }

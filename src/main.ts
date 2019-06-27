@@ -15,10 +15,12 @@ class ST {
   }
 
   init():void {
+    const _start: number = Date.now()
     this.setContainerHeight()
     const num: number = this.visibleDataCount()
     this.renderTable(data.slice(0, num + 5))
     this.onScroll()
+    console.log(`init render spend ${Date.now() - _start} ms`);
   }
 
   renderTable(tableData: Item[]):void {
@@ -34,18 +36,21 @@ class ST {
     <div class="tb-row-item">${item.id}</div>
     <div class="tb-row-item">${item.name}</div>
     <div class="tb-row-item">${item.label}</div>
-    <div class="tb-row-item">${item.position}</div>
+    <div class="tb-row-item">${item.email}</div>
+    <div class="tb-row-item">${item.city}</div>
   </div>`
   }
 
   onScroll():void {
     const _this = this
     this.el.addEventListener('scroll', function(e: any) {
+      const _start: number = Date.now()
       const _scrollTop = e.target.scrollTop
       const _content: HTMLElement = _this.body.querySelector('.st-body-content')
       _content.style.top = _scrollTop + 'px'
       const _data: Item[] = _this.getVisibleData(_scrollTop)
       _this.renderTable(_data)
+      console.log(`this render spend ${Date.now() - _start} ms`);
     })
   }
 
@@ -76,7 +81,6 @@ class ST {
   }
 
   getVisibleData(scrollTop: number) {
-    console.log(scrollTop)
     let start: number = Math.floor(scrollTop / this.rowHeight)
     let end:number = Math.min(start + this.visibleDataCount() + 5, data.length)
     const _data: Item[] = data.slice(start, end)
