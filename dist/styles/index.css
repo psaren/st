@@ -1,0 +1,6 @@
+.tb-row {
+  display: flex;
+  width: 100%; }
+  .tb-row .tb-row-item {
+    flex: 1;
+    height: 34px; }
