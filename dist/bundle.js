@@ -22,15 +22,35 @@ exports.default = data;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var data_1 = require("./data");
-var renderTable = function renderTable() {
-    var tb = document.getElementById('table');
-    var html = '';
-    data_1.default.forEach(function (item) {
-        html += "<div class=\"tb-row\">\n      <span class=\"tb-row-item\">" + item.id + "</span>\n      <span class=\"tb-row-item\">" + item.name + "</span>\n      <span class=\"tb-row-item\">" + item.label + "</span>\n      <span class=\"tb-row-item\">" + item.position + "</span>\n    </div>";
-    });
-    tb.innerHTML = html;
-};
-renderTable();
+var ST = /** @class */function () {
+    function ST(id) {
+        this.id = id;
+        this.el = document.getElementById(this.id);
+    }
+    ST.prototype.init = function () {
+        this.renderTable();
+        this.onScroll();
+    };
+    ST.prototype.renderTable = function () {
+        var _this = this;
+        var html = '';
+        data_1.default.forEach(function (item) {
+            html += _this.getTemplate(item);
+        });
+        this.el.innerHTML = html;
+    };
+    ST.prototype.getTemplate = function (item) {
+        return "<div class=\"tb-row\">\n    <div class=\"tb-row-item\">" + item.id + "</div>\n    <div class=\"tb-row-item\">" + item.name + "</div>\n    <div class=\"tb-row-item\">" + item.label + "</div>\n    <div class=\"tb-row-item\">" + item.position + "</div>\n  </div>";
+    };
+    ST.prototype.onScroll = function () {
+        this.el.addEventListener('scroll', function (e) {
+            console.log(e);
+        });
+    };
+    return ST;
+}();
+var st = new ST('table');
+st.init();
 
 },{"./data":1}]},{},[2])
 

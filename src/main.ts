@@ -1,17 +1,45 @@
 import { sayHello } from './greet';
 import data from './data'
 
-const renderTable = () => {
-  const tb = document.getElementById('table');
-  let html:string = ''
-  data.forEach(item => {
-    html += `<div class="tb-row">
-      <span class="tb-row-item">${item.id}</span>
-      <span class="tb-row-item">${item.name}</span>
-      <span class="tb-row-item">${item.label}</span>
-      <span class="tb-row-item">${item.position}</span>
-    </div>`
-  })
-  tb.innerHTML = html
+class ST {
+
+  id: string;
+  el: any;
+  constructor(id: string) {
+    this.id = id
+    this.el = document.getElementById(this.id)
+  }
+
+  init():void {
+    this.renderTable()
+    this.onScroll()
+  }
+
+  renderTable():void {
+    let html:string = ''
+    data.forEach(item => {
+      html += this.getTemplate(item)
+    })
+    this.el.innerHTML = html
+  }
+
+  getTemplate(item: any): string {
+    return `<div class="tb-row">
+    <div class="tb-row-item">${item.id}</div>
+    <div class="tb-row-item">${item.name}</div>
+    <div class="tb-row-item">${item.label}</div>
+    <div class="tb-row-item">${item.position}</div>
+  </div>`
+  }
+
+  onScroll():void {
+    this.el.addEventListener('scroll', function(e: any) {
+      console.log(e);
+    })
+  }
+
 }
-renderTable()
+
+const st = new ST('table')
+
+st.init()

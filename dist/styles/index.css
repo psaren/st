@@ -1,3 +1,7 @@
+.tb-container {
+  height: 300px;
+  overflow: auto; }
+
 .tb-row {
   display: flex;
   width: 100%; }
