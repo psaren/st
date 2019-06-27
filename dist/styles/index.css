@@ -2,6 +2,16 @@
   height: 300px;
   overflow: auto; }
 
+.st-body {
+  position: relative;
+  left: 0;
+  top: 0; }
+  .st-body .st-body-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%; }
+
 .tb-row {
   display: flex;
   width: 100%; }

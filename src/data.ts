@@ -1,11 +1,11 @@
-interface item {
+interface Item {
   id: number,
   label: string,
   name: string,
   position: string,
 }
 const getData = (num: number) => {
-  const data:item[] = []
+  const data: Item[] = []
 
   for(let i = 0;i < num;i++) {
     data.push({
@@ -17,5 +17,8 @@ const getData = (num: number) => {
   }
   return data
 }
-const data:item[] = getData(1000);
-export default data
+const data: Item[] = getData(100);
+export {
+  Item, 
+  data
+}
